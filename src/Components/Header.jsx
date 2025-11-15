@@ -5,12 +5,11 @@ function Header() {
     return (
         <header className="bg-white text-gray-700 border-b border-gray-200 font-sans sticky top-0 z-50 shadow-sm">
             <nav className="container mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
-                {/* Logo */}
+             
                 <Link to="/" className="logo">
                     <h1 className="text-3xl font-bold text-blue-600">EBazaar</h1>
                 </Link>
 
-                {/* Desktop Navigation */}
                 <ul className="flex items-center space-x-8">
                     <li><Link to="/" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Home</Link></li>
                     <li><Link to="/products" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Products</Link></li>

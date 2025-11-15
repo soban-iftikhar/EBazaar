@@ -1,42 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-
+import useEmblaCarousel from "embla-carousel-react";
 
 const Home = () => {
-  const carouselRef = useRef(null);
-
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-
-    const play = () => {
-      if (!el) return;
-      const scrollAmount = el.clientWidth;
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
-        el.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        el.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      }
-    };
-
-    const id = setInterval(play, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  const scrollNext = () => {
-    const el = carouselRef.current;
-    if (!el) return;
-    el.scrollBy({ left: el.clientWidth, behavior: "smooth" });
-  };
-
-  const scrollPrev = () => {
-    const el = carouselRef.current;
-    if (!el) return;
-    el.scrollBy({ left: -el.clientWidth, behavior: "smooth" });
-  };
-
   const products = [
     { id: 1, title: "Bootstrap", price: "$29.99", img: "public/Bootstrap.png" },
     { id: 2, title: "CSS", price: "$39.99", img: "public/CSS3.png" },
@@ -46,22 +14,42 @@ const Home = () => {
     { id: 6, title: "Node", price: "$24.99", img: "public/Node.png" }
   ];
 
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const id = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 3500);
+
+    return () => clearInterval(id);
+  }, [emblaApi]);
+
+  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi && emblaApi.scrollNext();
+
   return (
     <>
+
+    {/* HEADER */}
       <Header />
-      <section className="hero bg-gray-50 font-sans">
+
+
+    {/* HERO SECTION*/}
+      <section className="hero bg-blue-600 text-white py-20 px-6 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-20 lg:py-28">
           <div className="hero-content text-center">
-            <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl mb-4">
+            <h1 className="text-4xl font-bold  sm:text-5xl lg:text-6xl mb-4">
               Welcome to EBazaar
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            <p className="text-lg  max-w-2xl mx-auto mb-8">
               Your one-stop shop for all your needs. Discover amazing products
               at unbeatable prices!
             </p>
             <Link
               to="/products"
-              className="btn inline-block text-base font-medium text-white bg-blue-600 px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+              className="btn inline-block text-base font-medium text-black bg-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
             >
               Shop Now
             </Link>
@@ -69,6 +57,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* FEATURES SECTION */}
       <section className="features bg-white font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
@@ -95,6 +84,7 @@ const Home = () => {
       </section>
 
 
+      {/* POPULAR PRODUCTS with EMBLA CAROUSEL */}
       <section className="popular-products bg-gray-50 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20">
           <div className="flex items-center justify-between mb-6">
@@ -117,35 +107,48 @@ const Home = () => {
             </div>
           </div>
 
-          <div
-            ref={carouselRef}
-            className="relative flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory -mx-3 px-3"
-          >
-            {products.map((p) => (
-              <div
-                key={p.id}
-                className="product-item shrink-0 w-[85%] sm:w-1/2 md:w-1/3 lg:w-1/4 bg-white p-6 rounded-lg shadow-sm scroll-snap-start"
-              >
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  className="w-full h-48 object-cover mb-4 rounded-lg"
-                />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-gray-600 mb-4">{p.price}</p>
-                <Link
-                  to={`/products/${p.id}`}
-                  className="btn inline-block text-sm font-medium text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  View Details
-                </Link>
+          <div className="embla">
+            <div className="embla__viewport" ref={emblaRef}>
+              <div className="embla__container gap-6 px-1">
+
+                {products.map((p) => (
+                  <div key={p.id} className="embla__slide p-3">
+                    <div className="product-item w-full bg-white p-6 rounded-lg shadow-sm">
+                      <img
+                        src={p.img}
+                        alt={p.title}
+                        className="w-full h-auto object-cover mb-4 rounded-lg"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{p.title}</h3>
+                      <p className="text-gray-600 mb-4">{p.price}</p>
+
+                      <Link
+                        to={`/products/${p.id}`}
+                        className="btn inline-block text-sm font-medium text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        View Details
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+
               </div>
-            ))}
+            </div>
           </div>
-          <p className="text-sm text-gray-500 mt-4">Swipe / use arrows to browse popular products.</p>
+           <div className="mt-6 text-center">
+              <Link
+                to="/products"
+                className="inline-flex items-center gap-3 px-5 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300"
+              >
+                <span className="font-medium">Browse More Products</span>
+              </Link>
+            </div>
+          <p className="text-sm text-gray-500 mt-4">Use arrows to browse popular products.</p>
         </div>
       </section>
+      
 
+      {/* CALL TO ACTION */}
       <section className="cta bg-blue-600 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Shopping?</h2>
@@ -161,11 +164,12 @@ const Home = () => {
         </div>
       </section>
 
-
+      {/* TESTIMONIALS SECTION */}
       <section className="testimonials bg-gray-50 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">What Our Customers Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
             <div className="testimonial-item bg-white p-6 rounded-lg shadow-sm">
               <div className="flex flex-col items-center gap-4">
                 <img
@@ -178,7 +182,6 @@ const Home = () => {
                   <p className="text-gray-600 mb-4">
                     "EBazaar has transformed my shopping experience! The variety and prices are unbeatable."
                   </p>
-                  
                 </div>
               </div>
             </div>
@@ -195,7 +198,6 @@ const Home = () => {
                   <p className="text-gray-600 mb-4">
                     "Fast shipping and excellent customer service. I'm a loyal customer for life!"
                   </p>
-                  
                 </div>
               </div>
             </div>
@@ -212,15 +214,15 @@ const Home = () => {
                   <p className="text-gray-600 mb-4">
                     "I love the deals I find on EBazaar. Shopping here is always a pleasure."
                   </p>
-                  
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-
+      {/* FOOTER */}
       <Footer />
     </>
   );
