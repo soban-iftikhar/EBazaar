@@ -8,19 +8,20 @@ const STORAGE_KEY = "ebazaar_cart";
 
 const Products = () => {
   const navigate = useNavigate();
+
   const [products] = useState([
-    { id: 1, name: "Wireless Headphones", price: "$99.99", image: "public/Bootstrap.png" },
-    { id: 2, name: "Smart Watch", price: "$199.99", image: "public/CSS3.png" },
-    { id: 3, name: "Bluetooth Speaker", price: "$49.99", image: "public/HTML5.png" },
-    { id: 4, name: "E-Reader", price: "$129.99", image: "public/Java.png" },
-    { id: 5, name: "Fitness Tracker", price: "$79.99", image: "public/MongoDB.png" },
-    { id: 6, name: "Portable Charger", price: "$39.99", image: "public/Node.png" },
-    { id: 7, name: "Noise Cancelling Earbuds", price: "$149.99", image: "public/Bootstrap.png" },
-    { id: 8, name: "Smart Home Hub", price: "$89.99", image: "public/Git.png" },
-    { id: 9, name: "4K Action Camera", price: "$249.99", image: "public/Bootstrap.png" },
-    { id: 10, name: "VR Headset", price: "$299.99", image: "public/CSS3.png" },
-    { id: 11, name: "Gaming Mouse", price: "$59.99", image: "public/Java.png" },
-    { id: 12, name: "Mechanical Keyboard", price: "$89.99", image: "public/Node.png" }
+    { id: 1, name: "Wireless Headphones", price: "$99.99", image: "/Bootstrap.png" },
+    { id: 2, name: "Smart Watch", price: "$199.99", image: "/CSS3.png" },
+    { id: 3, name: "Bluetooth Speaker", price: "$49.99", image: "/HTML5.png" },
+    { id: 4, name: "E-Reader", price: "$129.99", image: "/Java.png" },
+    { id: 5, name: "Fitness Tracker", price: "$79.99", image: "/MongoDB.png" },
+    { id: 6, name: "Portable Charger", price: "$39.99", image: "/Node.png" },
+    { id: 7, name: "Noise Cancelling Earbuds", price: "$149.99", image: "/Bootstrap.png" },
+    { id: 8, name: "Smart Home Hub", price: "$89.99", image: "/Git.png" },
+    { id: 9, name: "4K Action Camera", price: "$249.99", image: "/Bootstrap.png" },
+    { id: 10, name: "VR Headset", price: "$299.99", image: "/CSS3.png" },
+    { id: 11, name: "Gaming Mouse", price: "$59.99", image: "/Java.png" },
+    { id: 12, name: "Mechanical Keyboard", price: "$89.99", image: "/Node.png" }
   ]);
 
   const [cartCount, setCartCount] = useState(0);
@@ -54,7 +55,7 @@ const Products = () => {
           id: product.id,
           title: product.name,
           price: product.price,
-          img: product.image.replace(/^public\//, "/"),
+          img: product.image,
           quantity
         });
       }
@@ -94,7 +95,7 @@ const Products = () => {
           {products.map((prod) => (
             <div key={prod.id} className="card bg-white p-4 rounded-lg shadow-md">
               <img
-                src={prod.image.replace(/^public\//, "/")}
+                src={prod.image}
                 alt={prod.name}
                 className="product-image w-full h-auto object-cover mb-4 rounded"
               />

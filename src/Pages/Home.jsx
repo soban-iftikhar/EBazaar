@@ -5,13 +5,13 @@ import Footer from "../Components/Footer";
 import useEmblaCarousel from "embla-carousel-react";
 
 const Home = () => {
-  const products = [
-    { id: 1, title: "Bootstrap", price: "$29.99", img: "public/Bootstrap.png" },
-    { id: 2, title: "CSS", price: "$39.99", img: "public/CSS3.png" },
-    { id: 3, title: "Git", price: "$49.99", img: "public/Git.png" },
-    { id: 4, title: "HTML", price: "$59.99", img: "public/HTML5.png" },
-    { id: 5, title: "Java", price: "$19.99", img: "public/Java.png" },
-    { id: 6, title: "Node", price: "$24.99", img: "public/Node.png" },
+ const products = [
+    { id: 1, title: "Bootstrap", price: "$29.99", img: "/Bootstrap.png" },
+    { id: 2, title: "CSS", price: "$39.99", img: "/CSS3.png" },
+    { id: 3, title: "Git", price: "$49.99", img: "/Git.png" },
+    { id: 4, title: "HTML", price: "$59.99", img: "/HTML5.png" },
+    { id: 5, title: "Java", price: "$19.99", img: "/Java.png" },
+    { id: 6, title: "Node", price: "$24.99", img: "/Node.png" },
   ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });

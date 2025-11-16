@@ -27,7 +27,7 @@ const Cart = () => {
   const updateQty = (id, delta) =>
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, (item.quantity || 1) + delta) } : item
+        item.id === id ? { ...item, qty: Math.max(1, (item.qty|| 1) + delta) } : item
       )
     );
 
