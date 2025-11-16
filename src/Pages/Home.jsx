@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import useEmblaCarousel from "embla-carousel-react";
@@ -11,7 +11,7 @@ const Home = () => {
     { id: 3, title: "Git", price: "$49.99", img: "public/Git.png" },
     { id: 4, title: "HTML", price: "$59.99", img: "public/HTML5.png" },
     { id: 5, title: "Java", price: "$19.99", img: "public/Java.png" },
-    { id: 6, title: "Node", price: "$24.99", img: "public/Node.png" }
+    { id: 6, title: "Node", price: "$24.99", img: "public/Node.png" },
   ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -31,12 +31,10 @@ const Home = () => {
 
   return (
     <>
-
-    {/* HEADER */}
+      {/* HEADER */}
       <Header />
 
-
-    {/* HERO SECTION*/}
+      {/* HERO SECTION*/}
       <section className="hero bg-blue-600 text-white py-20 px-6 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-20 lg:py-28">
           <div className="hero-content text-center">
@@ -62,33 +60,43 @@ const Home = () => {
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div className="feature-item">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Wide Selection</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Wide Selection
+              </h2>
               <p className="text-gray-600">
-                Explore a vast range of products across various categories to find exactly what you need.
+                Explore a vast range of products across various categories to
+                find exactly what you need.
               </p>
             </div>
             <div className="feature-item">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Best Prices</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Best Prices
+              </h2>
               <p className="text-gray-600">
-                Enjoy competitive pricing and exclusive deals that make shopping affordable.
+                Enjoy competitive pricing and exclusive deals that make shopping
+                affordable.
               </p>
             </div>
             <div className="feature-item">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Fast Shipping</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Fast Shipping
+              </h2>
               <p className="text-gray-600">
-                Get your orders delivered quickly and reliably with our efficient shipping options.
+                Get your orders delivered quickly and reliably with our
+                efficient shipping options.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-
       {/* POPULAR PRODUCTS with EMBLA CAROUSEL */}
       <section className="popular-products bg-gray-50 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-bold text-gray-900">Popular Products</h2>
+            <h2 className="text-3xl font-bold text-gray-900">
+              Popular Products
+            </h2>
             <div className="space-x-2">
               <button
                 onClick={scrollPrev}
@@ -110,7 +118,6 @@ const Home = () => {
           <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container gap-6 px-1">
-
                 {products.map((p) => (
                   <div key={p.id} className="embla__slide p-3">
                     <div className="product-item w-full bg-white p-6 rounded-lg shadow-sm">
@@ -119,7 +126,9 @@ const Home = () => {
                         alt={p.title}
                         className="w-full h-auto object-cover mb-4 rounded-lg"
                       />
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{p.title}</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        {p.title}
+                      </h3>
                       <p className="text-gray-600 mb-4">{p.price}</p>
 
                       <Link
@@ -131,29 +140,30 @@ const Home = () => {
                     </div>
                   </div>
                 ))}
-
               </div>
             </div>
           </div>
-           <div className="mt-6 text-center">
-              <Link
-                to="/products"
-                className="inline-flex items-center gap-3 px-5 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300"
-              >
-                <span className="font-medium">Browse More Products</span>
-              </Link>
-            </div>
-          <p className="text-sm text-gray-500 mt-4">Use arrows to browse popular products.</p>
+          <div className="mt-6 text-center">
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-3 px-5 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+              <span className="font-medium">Browse More Products</span>
+            </Link>
+          </div>
+          <p className="text-sm text-gray-500 mt-4">
+            Use arrows to browse popular products.
+          </p>
         </div>
       </section>
-      
 
       {/* CALL TO ACTION */}
       <section className="cta bg-blue-600 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Shopping?</h2>
           <p className="text-lg mb-8">
-            Join thousands of satisfied customers and experience the best online shopping today!
+            Join thousands of satisfied customers and experience the best online
+            shopping today!
           </p>
           <Link
             to="/products"
@@ -167,9 +177,10 @@ const Home = () => {
       {/* TESTIMONIALS SECTION */}
       <section className="testimonials bg-gray-50 font-sans">
         <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">What Our Customers Say</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            What Our Customers Say
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
             <div className="testimonial-item bg-white p-6 rounded-lg shadow-sm">
               <div className="flex flex-col items-center gap-4">
                 <img
@@ -178,9 +189,12 @@ const Home = () => {
                   className="w-16 h-16 rounded-full object-cover"
                 />
                 <div className="text-center">
-                  <h3 className="text-lg font-semibold text-gray-900">Jane D.</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Jane D.
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    "EBazaar has transformed my shopping experience! The variety and prices are unbeatable."
+                    "EBazaar has transformed my shopping experience! The variety
+                    and prices are unbeatable."
                   </p>
                 </div>
               </div>
@@ -194,9 +208,12 @@ const Home = () => {
                   className="w-16 h-16 rounded-full object-cover"
                 />
                 <div className="text-center">
-                  <h3 className="text-lg font-semibold text-gray-900">Lisa K.</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Lisa K.
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    "Fast shipping and excellent customer service. I'm a loyal customer for life!"
+                    "Fast shipping and excellent customer service. I'm a loyal
+                    customer for life!"
                   </p>
                 </div>
               </div>
@@ -210,14 +227,16 @@ const Home = () => {
                   className="w-16 h-16 rounded-full object-cover"
                 />
                 <div className="text-center">
-                  <h3 className="text-lg font-semibold text-gray-900">Mark S.</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Mark S.
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    "I love the deals I find on EBazaar. Shopping here is always a pleasure."
+                    "I love the deals I find on EBazaar. Shopping here is always
+                    a pleasure."
                   </p>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
